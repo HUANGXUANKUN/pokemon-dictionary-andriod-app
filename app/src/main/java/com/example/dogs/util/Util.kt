@@ -9,6 +9,9 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.dogs.R
 
+
+//val PERMISSION_SEND_SMS = 123
+
 fun getProgressDrawable(context: Context) : CircularProgressDrawable {
 
     // give a spinner image while loading other images

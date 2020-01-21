@@ -1,13 +1,12 @@
 package com.example.dogs.view
 
 
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -19,6 +18,7 @@ import com.bumptech.glide.request.transition.Transition
 
 import com.example.dogs.R
 import com.example.dogs.databinding.FragmentDetailBinding
+import com.example.dogs.model.DogBreed
 import com.example.dogs.model.DogPalette
 import com.example.dogs.util.getProgressDrawable
 import com.example.dogs.util.loadImage
@@ -34,11 +34,15 @@ class DetailFragment : Fragment() {
     private var dogUuid = 0
 
     private  lateinit var dataBinding: FragmentDetailBinding
+//    private var sendSmsStarted = false
+
+    private var currentDog: DogBreed? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        setHasOptionsMenu(true)
         // Inflate the layout for this fragment
         dataBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_detail, container, false)
         return dataBinding.root
@@ -88,6 +92,26 @@ class DetailFragment : Fragment() {
                 }
 
             })
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.detail_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.action_share -> {
+                val intent = Intent(Intent.ACTION_SEND)
+                intent.type = "text/plain"
+                intent.putExtra(Intent.EXTRA_SUBJECT, "Check out this pokemon")
+                intent.putExtra(Intent.EXTRA_TEXT, "${currentDog?.dogBreed} bred for ${currentDog?.bredFor}")
+                intent.putExtra(Intent.EXTRA_STREAM, currentDog?.imageUrl)
+                startActivity(Intent.createChooser(intent, "Share with"))
+            }
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 
 }
