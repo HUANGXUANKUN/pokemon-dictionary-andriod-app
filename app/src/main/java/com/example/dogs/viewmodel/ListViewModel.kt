@@ -3,7 +3,6 @@ package com.example.dogs.viewmodel
 import android.app.Application
 import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.example.dogs.model.DogBreed
 import com.example.dogs.model.DogDatabase
 import com.example.dogs.model.DogsApiService
@@ -30,6 +29,8 @@ class ListViewModel(application: Application) : BaseViewModel(application) {
     val loading = MutableLiveData<Boolean>()
 
     fun refresh() {
+        checkCacheDuration()
+
         // check update time
         val updateTime = prefHelper.getUpdateTime()
 
@@ -47,6 +48,18 @@ class ListViewModel(application: Application) : BaseViewModel(application) {
         }
     }
 
+    private fun checkCacheDuration() {
+        val cachePreference=prefHelper.getCachedDuration()
+
+        //validate user input
+        try{
+            val cachePreferenceInt = cachePreference?.toInt()?: 5*60
+            refreshTime = cachePreferenceInt.times(1000 * 1000 * 1000L)
+        }catch(e:NumberFormatException){
+            e.printStackTrace()
+        }
+    }
+
     /**
      * fetch data from local db.
      * for refresh click on screen.
@@ -60,7 +73,7 @@ class ListViewModel(application: Application) : BaseViewModel(application) {
         launch {
             val dogs = DogDatabase(getApplication()).dogDao().getAllDogs()
             dogsRetrieved(dogs)
-            Toast.makeText(getApplication(), "Dog retrieved from database", Toast.LENGTH_SHORT).show()
+            Toast.makeText(getApplication(), "Loaded from local database", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -78,7 +91,7 @@ class ListViewModel(application: Application) : BaseViewModel(application) {
                     override fun onSuccess(dogList: List<DogBreed>) {
                         // After retreve info from endpoint db, store in local db
                         storeDogsLocally(dogList)
-                        Toast.makeText(getApplication(), "Dog retrieved from endpoint", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(getApplication(), "Updated from endpoint", Toast.LENGTH_SHORT).show()
                         NotificationsHelper(getApplication()).createNotification()
                     }
 
