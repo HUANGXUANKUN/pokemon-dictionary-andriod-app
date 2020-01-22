@@ -11,27 +11,23 @@ data class DogBreed(
 
     @ColumnInfo(name = "breed_id") // column name stored in db
     @SerializedName("id") // serialized with the name in json
-    val breedId: String?,
+    val pokemonId: String?,
 
     @ColumnInfo(name = "dog_name")
     @SerializedName("name")
-    val dogBreed: String?,
-
-    @ColumnInfo(name = "breed_group")
-    @SerializedName("type")
-    val breedGroup: String?,
+    val name: String?,
 
     @ColumnInfo(name = "life_span")
     @SerializedName("hp")
-    val lifeSpan: String?,
+    val hp: String?,
 
     @ColumnInfo(name = "bred_for")
     @SerializedName("attack")
-    val bredFor: String?,
+    val attack: String?,
 
     @ColumnInfo(name = "temperament")
     @SerializedName("defense")
-    val temperament: String?,
+    val defense: String?,
 
     @ColumnInfo(name = "sp_attack")
     @SerializedName("sp_attack")

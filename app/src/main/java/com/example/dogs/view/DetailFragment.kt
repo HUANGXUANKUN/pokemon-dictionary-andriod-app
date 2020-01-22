@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.Navigation
 import androidx.palette.graphics.Palette
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
@@ -20,10 +19,7 @@ import com.example.dogs.R
 import com.example.dogs.databinding.FragmentDetailBinding
 import com.example.dogs.model.DogBreed
 import com.example.dogs.model.DogPalette
-import com.example.dogs.util.getProgressDrawable
-import com.example.dogs.util.loadImage
 import com.example.dogs.viewmodel.DetailViewModel
-import kotlinx.android.synthetic.main.fragment_detail.*
 
 /**
  * A simple [Fragment] subclass.
@@ -105,7 +101,7 @@ class DetailFragment : Fragment() {
                 val intent = Intent(Intent.ACTION_SEND)
                 intent.type = "text/plain"
                 intent.putExtra(Intent.EXTRA_SUBJECT, "Check out this pokemon")
-                intent.putExtra(Intent.EXTRA_TEXT, "${currentDog?.dogBreed} bred for ${currentDog?.bredFor}")
+                intent.putExtra(Intent.EXTRA_TEXT, "${currentDog?.name} bred for ${currentDog?.attack}")
                 intent.putExtra(Intent.EXTRA_STREAM, currentDog?.imageUrl)
                 startActivity(Intent.createChooser(intent, "Share with"))
             }

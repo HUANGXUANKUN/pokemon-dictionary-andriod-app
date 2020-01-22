@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-            android:text="@{dog.dogBreed}" />
+            android:text="@{dog.name}" />
 
 
         <ImageView
@@ -52,6 +52,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-            android:text="@{dog.breedId}" />
+            android:text="@{dog.pokemonId}" />
     </LinearLayout>
 </layout>
