@@ -8,12 +8,12 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dogs.R
 import com.example.dogs.databinding.ItemDogBinding
-import com.example.dogs.model.DogBreed
+import com.example.dogs.model.Pokemon
 import kotlinx.android.synthetic.main.item_dog.view.*
 
-class DogsListAdapter(val dogsList: ArrayList<DogBreed>):RecyclerView.Adapter<DogsListAdapter.DogViewHolder>(), DogClickListener {
+class DogsListAdapter(val dogsList: ArrayList<Pokemon>):RecyclerView.Adapter<DogsListAdapter.DogViewHolder>(), DogClickListener {
 
-    fun updateDogList(newDogsList: List<DogBreed>){
+    fun updateDogList(newDogsList: List<Pokemon>){
         dogsList.clear()
         dogsList.addAll(newDogsList)
         notifyDataSetChanged()

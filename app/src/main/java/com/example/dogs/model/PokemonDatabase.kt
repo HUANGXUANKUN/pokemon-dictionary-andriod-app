@@ -5,12 +5,12 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = arrayOf(DogBreed::class), version = 2)
-abstract class DogDatabase: RoomDatabase(){
+@Database(entities = arrayOf(Pokemon::class), version = 4)
+abstract class PokemonDatabase: RoomDatabase(){
     abstract fun dogDao():DogDao
 
     companion object {
-        @Volatile private var instance: DogDatabase? = null
+        @Volatile private var instance: PokemonDatabase? = null
         private val LOCK = Any()
 
         operator fun invoke(context: Context) = instance ?:synchronized(LOCK) {
@@ -21,8 +21,8 @@ abstract class DogDatabase: RoomDatabase(){
 
         private fun buildDatabase(context: Context) = Room.databaseBuilder(
             context.applicationContext,
-            DogDatabase::class.java,
-            "dogdatabase"
+            PokemonDatabase::class.java,
+            "pokemondatabase"
         ).build()
     }
 }

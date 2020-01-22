@@ -17,7 +17,7 @@ import com.bumptech.glide.request.transition.Transition
 
 import com.example.dogs.R
 import com.example.dogs.databinding.FragmentDetailBinding
-import com.example.dogs.model.DogBreed
+import com.example.dogs.model.Pokemon
 import com.example.dogs.model.DogPalette
 import com.example.dogs.viewmodel.DetailViewModel
 
@@ -32,7 +32,7 @@ class DetailFragment : Fragment() {
     private  lateinit var dataBinding: FragmentDetailBinding
 //    private var sendSmsStarted = false
 
-    private var currentDog: DogBreed? = null
+    private var currentDog: Pokemon? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -63,7 +63,7 @@ class DetailFragment : Fragment() {
             dog?.let {
                 dataBinding.dog = dog
 
-                it.imageUrl?.let{
+                it.url?.let{
                     setupBackGroundColor(it)
                 }
             }
@@ -102,7 +102,7 @@ class DetailFragment : Fragment() {
                 intent.type = "text/plain"
                 intent.putExtra(Intent.EXTRA_SUBJECT, "Check out this pokemon")
                 intent.putExtra(Intent.EXTRA_TEXT, "${currentDog?.name} bred for ${currentDog?.attack}")
-                intent.putExtra(Intent.EXTRA_STREAM, currentDog?.imageUrl)
+                intent.putExtra(Intent.EXTRA_STREAM, currentDog?.url)
                 startActivity(Intent.createChooser(intent, "Share with"))
             }
         }

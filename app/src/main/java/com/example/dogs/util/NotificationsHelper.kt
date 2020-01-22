@@ -14,7 +14,7 @@ import com.example.dogs.view.MainActivity
 
 class NotificationsHelper(val context: Context) {
 
-    private val CHANNEL_ID = "Dogs channel id"
+    private val CHANNEL_ID = "Pokemon Channel Id"
     private val NOTIFICATION_ID = 123
 
     fun createNotification() {
@@ -30,8 +30,8 @@ class NotificationsHelper(val context: Context) {
         val notification = NotificationCompat.Builder(context, CHANNEL_ID)
             .setSmallIcon(R.drawable.pokemon_icon)
             .setLargeIcon(icon)
-            .setContentTitle("Dog retrieved")
-            .setContentText("This notification has some content")
+            .setContentTitle("Pokemon retrieved")
+            .setContentText("PokeDex has been updated!")
             .setStyle(
                 NotificationCompat.BigPictureStyle()
                     .bigPicture(icon)
@@ -47,7 +47,7 @@ class NotificationsHelper(val context: Context) {
     private fun createNotificationChannel() {
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
             val name = CHANNEL_ID
-            val descriptionText = "Channel description"
+            val descriptionText = "Pokemon Channel"
             val importance = NotificationManager.IMPORTANCE_DEFAULT
             val channel = NotificationChannel(CHANNEL_ID, name, importance).apply {
                 description = descriptionText

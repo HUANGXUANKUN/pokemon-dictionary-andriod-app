@@ -7,25 +7,25 @@ import com.google.gson.annotations.SerializedName
 
 // data class doesn't necessary need a body
 @Entity
-data class DogBreed(
+data class Pokemon(
 
-    @ColumnInfo(name = "breed_id") // column name stored in db
+    @ColumnInfo(name = "pokemonId") // column name stored in db
     @SerializedName("id") // serialized with the name in json
     val pokemonId: String?,
 
-    @ColumnInfo(name = "dog_name")
+    @ColumnInfo(name = "name")
     @SerializedName("name")
     val name: String?,
 
-    @ColumnInfo(name = "life_span")
+    @ColumnInfo(name = "hp")
     @SerializedName("hp")
     val hp: String?,
 
-    @ColumnInfo(name = "bred_for")
+    @ColumnInfo(name = "attack")
     @SerializedName("attack")
     val attack: String?,
 
-    @ColumnInfo(name = "temperament")
+    @ColumnInfo(name = "defense")
     @SerializedName("defense")
     val defense: String?,
 
@@ -41,9 +41,9 @@ data class DogBreed(
     @SerializedName("speed")
     val speed: String?,
 
-    @ColumnInfo(name = "dog_url")
+    @ColumnInfo(name = "url")
     @SerializedName("url")
-    val imageUrl: String?
+    val url: String?
 ) {
     // define primary key in the body
     @PrimaryKey(autoGenerate = true)

@@ -18,21 +18,21 @@ interface DogDao {
      *
      */
     @Insert
-    suspend fun insertAll(vararg dogs: DogBreed): List<Long>
+    suspend fun insertAll(vararg dogs: Pokemon): List<Long>
 
     /**
      *
      */
-    @Query("Select * FROM dogbreed")
-    suspend fun getAllDogs():List<DogBreed>
+    @Query("Select * FROM pokemon")
+    suspend fun getAllDogs():List<Pokemon>
 
-    @Query("SELECT * FROM dogbreed WHERE uuid = :dogId")
-    suspend fun getDog(dogId: Int): DogBreed
+    @Query("SELECT * FROM pokemon WHERE uuid = :dogId")
+    suspend fun getDog(dogId: Int): Pokemon
 
     /**
-     * delete every entity in db dogbreed
+     * delete every entity in db
      */
-    @Query("DELETE FROM dogbreed")
+    @Query("DELETE FROM pokemon")
     suspend fun deleteAllDogs()
 
 }

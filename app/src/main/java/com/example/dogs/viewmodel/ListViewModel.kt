@@ -3,8 +3,8 @@ package com.example.dogs.viewmodel
 import android.app.Application
 import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
-import com.example.dogs.model.DogBreed
-import com.example.dogs.model.DogDatabase
+import com.example.dogs.model.Pokemon
+import com.example.dogs.model.PokemonDatabase
 import com.example.dogs.model.DogsApiService
 import com.example.dogs.util.NotificationsHelper
 import com.example.dogs.util.SharedPreferencesHelper
@@ -24,7 +24,7 @@ class ListViewModel(application: Application) : BaseViewModel(application) {
     private val dogsService = DogsApiService()
     private val disposable = CompositeDisposable() // avoid memory leak
 
-    val dogs = MutableLiveData<List<DogBreed>>()
+    val dogs = MutableLiveData<List<Pokemon>>()
     val dogsLoadError = MutableLiveData<Boolean>()
     val loading = MutableLiveData<Boolean>()
 
@@ -71,7 +71,7 @@ class ListViewModel(application: Application) : BaseViewModel(application) {
     private fun fetchFromDatabase() {
         loading.value = true
         launch {
-            val dogs = DogDatabase(getApplication()).dogDao().getAllDogs()
+            val dogs = PokemonDatabase(getApplication()).dogDao().getAllDogs()
             dogsRetrieved(dogs)
             Toast.makeText(getApplication(), "Loaded from local database", Toast.LENGTH_SHORT).show()
         }
@@ -86,9 +86,9 @@ class ListViewModel(application: Application) : BaseViewModel(application) {
             dogsService.getDogs()
                 .subscribeOn(Schedulers.newThread()) // background data retrieve thread
                 .observeOn(AndroidSchedulers.mainThread()) // main Thread
-                .subscribeWith(object : DisposableSingleObserver<List<DogBreed>>(){
+                .subscribeWith(object : DisposableSingleObserver<List<Pokemon>>(){
 
-                    override fun onSuccess(dogList: List<DogBreed>) {
+                    override fun onSuccess(dogList: List<Pokemon>) {
                         // After retreve info from endpoint db, store in local db
                         storeDogsLocally(dogList)
                         Toast.makeText(getApplication(), "Updated from endpoint", Toast.LENGTH_SHORT).show()
@@ -104,16 +104,16 @@ class ListViewModel(application: Application) : BaseViewModel(application) {
         )
     }
 
-    private fun dogsRetrieved(dogList: List<DogBreed>){
+    private fun dogsRetrieved(dogList: List<Pokemon>){
         dogs.value = dogList
         dogsLoadError.value = false
         loading.value = false
     }
 
-    private fun storeDogsLocally(list: List<DogBreed>){
+    private fun storeDogsLocally(list: List<Pokemon>){
         launch{
             // delete all info first
-            val dao = DogDatabase(getApplication()).dogDao()
+            val dao = PokemonDatabase(getApplication()).dogDao()
             dao.deleteAllDogs()
             val result = dao.insertAll(*list.toTypedArray())
             var i = 0
