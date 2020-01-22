@@ -18,19 +18,32 @@ data class DogBreed(
     val dogBreed: String?,
 
     @ColumnInfo(name = "breed_group")
-    @SerializedName("breed_group")
+    @SerializedName("type")
     val breedGroup: String?,
 
     @ColumnInfo(name = "life_span")
-    @SerializedName("life_span")
+    @SerializedName("hp")
     val lifeSpan: String?,
 
     @ColumnInfo(name = "bred_for")
-    @SerializedName("bred_for")
+    @SerializedName("attack")
     val bredFor: String?,
 
-    @SerializedName("temperament")
+    @ColumnInfo(name = "temperament")
+    @SerializedName("defense")
     val temperament: String?,
+
+    @ColumnInfo(name = "sp_attack")
+    @SerializedName("sp_attack")
+    val spAttack: String?,
+
+    @ColumnInfo(name = "sp_defense")
+    @SerializedName("sp_defense")
+    val spDefense: String?,
+
+    @ColumnInfo(name = "speed")
+    @SerializedName("speed")
+    val speed: String?,
 
     @ColumnInfo(name = "dog_url")
     @SerializedName("url")
