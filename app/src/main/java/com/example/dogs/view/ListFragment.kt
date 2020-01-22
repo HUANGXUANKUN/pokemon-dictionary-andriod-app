@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.example.dogs.R
@@ -37,7 +38,8 @@ class ListFragment : Fragment() {
         viewModel.refresh()
 
         dogsList.apply {
-            layoutManager = LinearLayoutManager(context)
+//            layoutManager = LinearLayoutManager(context)
+            layoutManager = GridLayoutManager(context, 3)
             adapter = dogsListAdapter
         }
 
