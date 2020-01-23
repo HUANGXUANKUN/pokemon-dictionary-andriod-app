@@ -1,72 +1,294 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout  xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
     <data>
         <variable
-            name="dog"
-            type="com.example.dogs.model.Pokemon"/>
+            name="pokemon"
+            type="com.example.dogs.model.Pokemon" />
+
         <variable
             name="palette"
             type="com.example.dogs.model.DogPalette" />
+
+        <variable
+            name="typeChipColor"
+            type="com.example.dogs.model.ChipColor" />
     </data>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@{palette.color}"
+        android:orientation="vertical"
+        tools:background="#9B9595"
         tools:context="com.example.dogs.view.DetailFragment">
 
-        <ImageView
-            android:id="@+id/dogImage"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="10dp"
-            android:imageUrl="@{dog.url}"
-            android:minHeight="200dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="40dp"
+            app:cardBackgroundColor="@android:color/white"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="180dp"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/name"
+                        android:layout_margin="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{pokemon.name}"
+                        android:textSize="30sp"
+                        android:textStyle="bold"
+                        tools:text="Pikachu" />
+
+                    <ImageView
+                        android:id="@+id/imageView2"
+                        android:layout_margin="2dp"
+                        android:layout_width="14dp"
+                        android:layout_height="14dp"
+                        android:layout_gravity="center"
+                        app:srcCompat="@mipmap/ic_pokemon_ball" />
+
+                    <TextView
+                        android:id="@+id/pokemonId"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{pokemon.pokemonId}"
+                        android:textSize="15sp"
+                        android:layout_gravity="center"
+                        android:textStyle="bold"
+                        tools:text="001" />
+                </LinearLayout>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/typeChip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:gravity="center"
+                    android:text="@{pokemon.type}"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Widget.Button.Borderless.Colored"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp"
+                    app:chipBackgroundColor="@{typeChipColor.color}"
+                    tools:text="Normal"
+                    tools:textSize="20sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/hpTitle"
+                        style="@style/Title"
+                        android:layout_width="85dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:layout_margin="4dp"
+                        android:gravity="center"
+                        android:text="Hp"
+                        android:textSize="15sp" />
+
+                    <ProgressBar
+                        android:id="@+id/hpProgressBar"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        tool.tooltipText="100"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="clip_horizontal|center_vertical"
+                        android:layout_margin="8dp"
+                        android:layout_marginStart="8dp"
+                        android:max="100"
+                        android:progress="120"
+                        android:progressTint="@{palette.color}"
+                        android:scaleY="4" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/Title"
+                        android:layout_width="85dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:layout_margin="4dp"
+                        android:gravity="center"
+                        android:text="Attack"
+                        android:textSize="15sp" />
+
+                    <ProgressBar
+                        android:id="@+id/attackProgressBar"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        tool.tooltipText="100"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="clip_horizontal|center_vertical"
+                        android:layout_margin="8dp"
+                        android:layout_marginStart="8dp"
+                        android:max="100"
+                        android:progress="120"
+                        android:progressTint="@{palette.color}"
+                        android:scaleY="4" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/Title"
+                        android:layout_width="85dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:layout_margin="4dp"
+                        android:gravity="center"
+                        android:text="Defense"
+                        android:textSize="15sp" />
+
+                    <ProgressBar
+                        android:id="@+id/defenseProgressBar"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        tool.tooltipText="100"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="clip_horizontal|center_vertical"
+                        android:layout_margin="8dp"
+                        android:layout_marginStart="8dp"
+                        android:max="100"
+                        android:progress="120"
+                        android:progressTint="@{palette.color}"
+                        android:scaleY="4" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/Title"
+                        android:layout_width="85dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:layout_margin="4dp"
+                        android:gravity="center"
+                        android:text="Sp. Attack"
+                        android:textSize="15sp" />
+
+                    <ProgressBar
+                        android:id="@+id/sAttackProgressBar"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        tool.tooltipText="100"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="clip_horizontal|center_vertical"
+                        android:layout_margin="8dp"
+                        android:layout_marginStart="8dp"
+                        android:max="100"
+                        android:progress="120"
+                        android:progressTint="@{palette.color}"
+                        android:scaleY="4" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/Title"
+                        android:layout_width="85dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:layout_margin="4dp"
+                        android:gravity="center"
+                        android:text="Sp. Defense"
+                        android:textSize="15sp" />
+
+                    <ProgressBar
+                        android:id="@+id/sDefenseProgressBar"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        tool.tooltipText="100"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="clip_horizontal|center_vertical"
+                        android:layout_margin="8dp"
+                        android:layout_marginStart="8dp"
+                        android:max="100"
+                        android:progress="120"
+                        android:progressTint="@{palette.color}"
+                        android:scaleY="4" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/attackTitle"
+                        style="@style/Title"
+                        android:layout_width="85dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:layout_margin="4dp"
+                        android:gravity="center"
+                        android:text="Speed"
+                        android:textSize="15sp" />
+
+                    <ProgressBar
+                        android:id="@+id/speedProgressBar"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        tool.tooltipText="100"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="clip_horizontal|center_vertical"
+                        android:layout_margin="8dp"
+                        android:layout_marginStart="8dp"
+                        android:max="100"
+                        android:progress="120"
+                        android:progressTint="@{palette.color}"
+                        android:scaleY="4" />
+                </LinearLayout>
+            </LinearLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_alignTop="@+id/card_view"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="-25dp"
+            android:contentDescription="@{pokemon.name}"
+            android:imageUrl="@{pokemon.url}"
             android:scaleType="fitCenter"
             android:src="@mipmap/ic_dog_icon" />
-
-        <TextView
-            android:id="@+id/dogName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/dogImage"
-            android:text="@{dog.name}"
-            style="@style/Title"
-            android:layout_centerHorizontal="true"
-            android:layout_margin="4dp"/>
-
-        <TextView
-            android:id="@+id/dogPurpose"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/dogName"
-            android:text="@{dog.attack}"
-            style="@style/Title"
-            android:layout_centerHorizontal="true"
-            android:layout_margin="4dp"/>
-
-        <TextView
-            android:id="@+id/dogTemperament"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/dogPurpose"
-            android:text="@{dog.defense}"
-            style="@style/Title"
-            android:layout_centerHorizontal="true"
-            android:layout_margin="4dp"/>
-
-        <TextView
-            android:id="@+id/dogLifespan"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/dogTemperament"
-            android:text="@{dog.hp}"
-            style="@style/Title"
-            android:layout_centerHorizontal="true"
-            android:layout_margin="4dp"/>
 
     </RelativeLayout>
 </layout>

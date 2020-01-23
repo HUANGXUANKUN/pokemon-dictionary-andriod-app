@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/listFragment"
         android:name="com.example.dogs.view.ListFragment"
-        android:label="ListFragment" >
+        android:label="pokeDex">
         <action
             android:id="@+id/actionDetailFragment"
             app:destination="@id/detailFragment"
@@ -21,19 +21,19 @@
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.example.dogs.view.DetailFragment"
-        android:label="DetailFragment" >
+        android:label="pokeCard">
         <action
             android:id="@+id/actionListFragment"
             app:destination="@id/listFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
         <argument
+            android:name="dogUuid"
             android:defaultValue="0"
-            app:argType="integer"
-            android:name="dogUuid" />
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.example.dogs.view.SettingsFragment"
-        android:label="SettingsFragment" />
+        android:label="Settings" />
 </navigation>

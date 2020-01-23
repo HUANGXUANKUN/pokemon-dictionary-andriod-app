@@ -21,6 +21,10 @@ data class Pokemon(
     @SerializedName("hp")
     val hp: String?,
 
+    @ColumnInfo(name = "type")
+    @SerializedName("type")
+    val type: String?,
+
     @ColumnInfo(name = "attack")
     @SerializedName("attack")
     val attack: String?,
@@ -51,6 +55,8 @@ data class Pokemon(
 }
 
 data class DogPalette(var color: Int)
+
+data class ChipColor(var color: Int)
 
 //data class SmsInfo(
 //    var to: String,
