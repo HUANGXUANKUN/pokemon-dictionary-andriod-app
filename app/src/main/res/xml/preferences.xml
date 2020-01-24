@@ -8,5 +8,4 @@
         android:inputType="number"
         android:title="Cache duration in seconds"
         android:key="pre_cache_duration"/>
-    
 </PreferenceScreen>
