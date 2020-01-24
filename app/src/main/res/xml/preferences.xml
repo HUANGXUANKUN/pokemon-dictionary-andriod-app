@@ -8,7 +8,4 @@
         android:inputType="number"
         android:title="Cache duration in seconds"
         android:key="pre_cache_duration"/>
-    <style name="ChipStyle" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <!-- Your style -->
-    </style>
 </PreferenceScreen>

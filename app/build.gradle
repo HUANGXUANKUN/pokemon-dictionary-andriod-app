@@ -11,12 +11,17 @@ apply plugin: "androidx.navigation.safeargs"
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.example.dogs"
-        minSdkVersion 24
+        applicationId "com.xuankun.dogs"
+        minSdkVersion 15
         targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "2.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        kapt {
+            arguments {
+                arg("room.schemaLocation", "$projectDir/schemas".toString())
+            }
+        }
     }
     buildTypes {
         release {
